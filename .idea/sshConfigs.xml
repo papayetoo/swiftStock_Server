@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="15.164.214.228" id="ac1f6c00-1b2b-40a5-9332-8886f58bf7f4" keyPath="$USER_HOME$/Downloads/pyStock_seoul.pem" port="22" nameFormat="DESCRIPTIVE" username="ec2-user" />
+    </configs>
+  </component>
+</project>

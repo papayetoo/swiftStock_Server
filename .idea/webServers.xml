@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="156841b2-20eb-48b5-98fb-1b3fca58f867" name="flaskStock">
+        <fileTransfer rootFolder="/home/ec2-user/" accessType="SFTP" host="15.164.214.228" port="22" sshConfigId="ac1f6c00-1b2b-40a5-9332-8886f58bf7f4" sshConfig="ec2-user@15.164.214.228:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
