@@ -13,6 +13,29 @@ def index():
     return render_template('main_view.html')
 
 
+@application.route('/main', methods=['POST'])
+def main():
+    params = json.loads(request.data, encoding='utf-8')
+    print(params)
+    # return "Hello, World"
+    res = []
+    # res = {}
+    endDt = datetime.datetime.now()
+    startDt = endDt + datetime.timedelta(days=-7)
+    for code in params:
+        df = web.DataReader(code,
+                            'naver',
+                            start=startDt.strftime('%Y-%m-%d'),
+                            end=endDt.strftime('%Y-%m-%d'))
+        df['Open'] = df['Open'].astype(float)
+        df['Close'] = df['Close'].astype(float)
+        df['High'] = df['High'].astype(float)
+        df['Low'] = df['Low'].astype(float)
+        # res[str(code)] = df["Close"].to_list()
+        res.append(df["Close"].to_list())
+    return make_response({"closePrice": res}, 200)
+
+
 @application.route('/getDf', methods=['POST'])
 def getDf():
     print(request)
@@ -29,10 +52,6 @@ def getDf():
                         end=endDt.strftime('%Y-%m-%d'))
     print(startDt.utcnow())
     print(df)
-    # print(df)
-    # # # print(df['Open'].rolling(window=5).mean())
-    # dt = list(map(lambda x: str(x).split()[0], df.index))
-    # return make_response({"open": df['Open'].to_list()}, 200)
     df['Open'] = df['Open'].astype(float)
     df['Close'] = df['Close'].astype(float)
     df['High'] = df['High'].astype(float)
@@ -47,6 +66,7 @@ def getDf():
                           },
                          200)
     # return jsonify({"open": df['Open'].to_list()})
+
 
 if __name__ == "__main__":
     application.run("0.0.0.0", 8000, True)
